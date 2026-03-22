@@ -1,0 +1,549 @@
+/* ========== RESET & VARIABLES ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-dark: #0a0a0a;
+    --text-light: #f0f0f0;
+    --gold: #d4af37;
+    --brown: #8b6f47;
+    --brown-dark: #6b5a3d;
+    --white: #ffffff;
+    --transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ========== TYPOGRAPHY ========== */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+h1 {
+    font-size: 4rem;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.95;
+}
+
+/* ========== UTILITIES ========== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 3rem;
+}
+
+.gold {
+    color: var(--gold);
+    font-weight: 500;
+}
+
+.italic {
+    font-style: italic;
+    opacity: 0.85;
+}
+
+.big-text {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+.highlight {
+    color: var(--gold);
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+}
+
+/* ========== BUTTONS ========== */
+.btn {
+    padding: 1.2rem 3rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    transition: var(--transition);
+    border-radius: 0;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--brown));
+    color: var(--bg-dark);
+    text-transform: uppercase;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 50px rgba(212, 175, 55, 0.4);
+    background: linear-gradient(135deg, #e6c748, #9d7a52);
+}
+
+.btn-large {
+    padding: 1.5rem 4rem;
+    font-size: 1.2rem;
+    margin-top: 3rem;
+}
+
+/* ========== HERO SECTION ========== */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-dark);
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(ellipse at 50% 50%, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+    animation: heroGlow 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes heroGlow {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 900px;
+    padding: 0 2rem;
+    animation: fadeInUp 1.5s ease-out;
+}
+
+.hero-title {
+    color: var(--white);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.hero-subtitle {
+    font-size: 1.4rem;
+    color: var(--gold);
+    margin-bottom: 3rem;
+    opacity: 0.95;
+    font-weight: 300;
+}
+
+#canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* ========== SECTIONS ========== */
+.section {
+    padding: 8rem 0;
+    position: relative;
+    background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(139, 111, 71, 0.05) 50%, var(--bg-dark) 100%);
+}
+
+.section:nth-child(even) {
+    background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(212, 175, 55, 0.03) 50%, var(--bg-dark) 100%);
+}
+
+.section-title {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 4rem;
+    color: var(--white);
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* ========== CONTENT BLOCKS ========== */
+.content-block {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem;
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+    border-radius: 4px;
+    line-height: 1.9;
+}
+
+.content-block p {
+    margin-bottom: 1.5rem;
+}
+
+.content-block p:last-child {
+    margin-bottom: 0;
+}
+
+.case-example {
+    font-style: italic;
+    padding: 1.5rem;
+    border-left: 3px solid var(--gold);
+    background: rgba(212, 175, 55, 0.05);
+    margin: 2rem 0;
+}
+
+/* ========== BIG IDEA ========== */
+.big-idea {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 4rem;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(139, 111, 71, 0.1));
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    text-align: center;
+}
+
+.big-idea p {
+    font-size: 1.6rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    font-weight: 300;
+}
+
+.big-idea p:last-child {
+    margin-bottom: 0;
+}
+
+/* ========== FLOATING THOUGHTS ========== */
+.floating-thoughts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+.thought {
+    padding: 2rem;
+    background: rgba(212, 175, 55, 0.08);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    text-align: center;
+    border-radius: 4px;
+    animation: float 6s ease-in-out infinite;
+    font-style: italic;
+}
+
+.thought:nth-child(2) { animation-delay: 0.5s; }
+.thought:nth-child(3) { animation-delay: 1s; }
+.thought:nth-child(4) { animation-delay: 1.5s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+/* ========== QUOTES GRID ========== */
+.quotes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.quote-card {
+    padding: 3rem;
+    background: rgba(212, 175, 55, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    text-align: center;
+    transition: var(--transition);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.quote-card:hover {
+    transform: translateY(-10px);
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--gold);
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.1);
+}
+
+.quote-text {
+    font-size: 1.5rem;
+    color: var(--white);
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    line-height: 1.8;
+}
+
+.quote-author {
+    color: var(--gold);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* ========== STORIES GRID ========== */
+.stories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+.story-card {
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    text-align: center;
+    transition: var(--transition);
+    border-radius: 4px;
+}
+
+.story-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold);
+    background: rgba(212, 175, 55, 0.08);
+    box-shadow: 0 20px 50px rgba(212, 175, 55, 0.15);
+}
+
+.story-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--bg-dark);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+}
+
+.story-card h3 {
+    color: var(--gold);
+    margin-bottom: 1rem;
+}
+
+.story-card p {
+    font-size: 1rem;
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+/* ========== TECHNIQUES GRID ========== */
+.techniques-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    margin-top: 3rem;
+}
+
+.technique-card {
+    padding: 2.5rem;
+    background: linear-gradient(135deg, rgba(139, 111, 71, 0.05), rgba(212, 175, 55, 0.05));
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 4px;
+    transition: var(--transition);
+    text-align: center;
+}
+
+.technique-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold);
+    background: linear-gradient(135deg, rgba(139, 111, 71, 0.1), rgba(212, 175, 55, 0.1));
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+}
+
+.technique-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.technique-card h3 {
+    color: var(--gold);
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+}
+
+.technique-card p {
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* ========== FINAL MESSAGE ========== */
+.final-block {
+    max-width: 900px;
+    margin: 0 auto 4rem;
+    padding: 3rem;
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(139, 111, 71, 0.15));
+    border: 2px solid var(--gold);
+    border-radius: 4px;
+    text-align: center;
+}
+
+.final-block .quote-text {
+    font-size: 2rem;
+    color: var(--gold);
+}
+
+/* ========== FOOTER ========== */
+.footer {
+    background: linear-gradient(180deg, var(--bg-dark), #000000);
+    padding: 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
+    opacity: 0.8;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1.5s ease-out forwards;
+    opacity: 0;
+}
+
+.fade-in:nth-child(1) { animation-delay: 0.2s; }
+.fade-in:nth-child(2) { animation-delay: 0.4s; }
+.fade-in:nth-child(3) { animation-delay: 0.6s; }
+.fade-in:nth-child(4) { animation-delay: 0.8s; }
+.fade-in:nth-child(5) { animation-delay: 1s; }
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .section {
+        padding: 4rem 0;
+    }
+
+    .content-block {
+        padding: 2rem;
+    }
+
+    .big-idea {
+        padding: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .big-text {
+        font-size: 1.2rem;
+    }
+
+    .quote-text {
+        font-size: 1.2rem;
+    }
+
+    .btn {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+
+    .btn-large {
+        padding: 1.2rem 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .section {
+        padding: 3rem 0;
+    }
+
+    .techniques-grid,
+    .stories-grid,
+    .quotes-grid {
+        grid-template-columns: 1fr;
+    }
+}
